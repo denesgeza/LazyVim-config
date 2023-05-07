@@ -13,6 +13,9 @@ vim.keymap.set("i", "jk", "<Esc>")
 vim.keymap.set("i", "KJ", "<Esc>")
 vim.keymap.set("i", "JK", "<Esc>")
 
+-- LazyVim
+vim.keymap.set("n", "<leader>L", "<cmd>:Lazy<cr>", { desc = "Lazy" })
+
 -- Delete single character wo copying it to the register
 vim.keymap.set("n", "x", '"_x')
 
@@ -35,7 +38,7 @@ vim.keymap.set("n", "<leader>tx", ":tabclose<CR>", { desc = "Close tab" }) -- cl
 vim.keymap.set("n", "n", "nzz", { noremap = true })
 
 -- Projects
-vim.keymap.set("n", "<leader>P", ":Telescope projects<CR>")
+-- vim.keymap.set("n", "<leader>P", ":Telescope projects<CR>") -- Not installed
 vim.keymap.set("n", "<leader>tp", ":tabp<CR>") --  go to previous tab
 
 -- Tmux Navigation
