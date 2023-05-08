@@ -42,8 +42,11 @@ vim.keymap.set("n", "n", "nzz", { noremap = true })
 vim.keymap.set("n", "<leader>tp", ":tabp<CR>") --  go to previous tab
 
 -- Tmux Navigation
-
 vim.keymap.set("n", "<C-h>", "<cmd> TmuxNavigateLeft<CR>", { desc = "Window Left" })
 vim.keymap.set("n", "<C-l>", "<cmd> TmuxNavigateRight<CR>", { desc = "Window Right" })
 vim.keymap.set("n", "<C-j>", "<cmd> TmuxNavigateDown<CR>", { desc = "Window Down" })
 vim.keymap.set("n", "<C-k>", "<cmd> TmuxNavigateUp<CR>", { desc = "Window Up" })
+
+-- Code folding
+vim.keymap.set("n", "zR", require("ufo").openAllFolds, { desc = "Open All Folds" })
+vim.keymap.set("n", "zM", require("ufo").closeAllFolds, { desc = "Close All Folds" })

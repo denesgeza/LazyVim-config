@@ -11,5 +11,7 @@ vim.diagnostic.config({ virtual_text = false })
 
 -- Code folding
 -- https://alpha2phi.medium.com/neovim-for-beginners-code-folding-7574925412ea
-vim.opt.foldmethod = "indent"
-vim.opt.foldlevel = 1
+vim.opt.foldcolumn = "1"
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 99
+vim.o.foldenable = true

@@ -22,6 +22,7 @@ return {
         underline = true,
         update_in_insert = false,
         virtual_text = false,
+        -- Modified Geza
         -- virtual_text = {
         --   spacing = 4,
         --   source = "if_many",
@@ -113,6 +114,21 @@ return {
         require("cmp_nvim_lsp").default_capabilities(),
         opts.capabilities or {}
       )
+      -- Added Geza
+      capabilities.textDocument.foldingRange = {
+        dynamicRegistration = false,
+        linFoldingOnly = true,
+      }
+      local language_servers = require("lspconfig").util.available_servers() -- or list servers manually like {'gopls', 'clangd'}
+      for _, ls in ipairs(language_servers) do
+        require("lspconfig")[ls].setup({
+          capabilities = capabilities,
+          -- you can add other fields for setting up lsp server in this table
+        })
+      end
+      require("ufo").setup()
+
+      -- End Added
 
       local function setup(server)
         local server_opts = vim.tbl_deep_extend("force", {
@@ -180,7 +196,7 @@ return {
           nls.builtins.diagnostics.fish,
           nls.builtins.formatting.stylua,
           nls.builtins.formatting.shfmt,
-          -- nls.builtins.diagnostics.flake8,
+          nls.builtins.diagnostics.flake8,
         },
       }
     end,
@@ -196,7 +212,7 @@ return {
       ensure_installed = {
         "stylua",
         "shfmt",
-        -- "flake8",
+        "flake8",
       },
     },
     ---@param opts MasonSettings | {ensure_installed: string[]}
