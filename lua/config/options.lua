@@ -1,7 +1,7 @@
 -- Options are automatically loaded before lazy.nvim startup
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
-vim.opt.winbar = "%m=%m %f"
+-- vim.opt.winbar = "%m=%m %f"
 vim.opt.scrolloff = 5
 vim.opt.smartcase = true
 vim.opt.autoindent = true
@@ -14,4 +14,4 @@ vim.diagnostic.config({ virtual_text = false })
 vim.opt.foldcolumn = "1"
 vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 99
-vim.o.foldenable = true
+vim.opt.foldenable = true
