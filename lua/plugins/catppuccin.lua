@@ -14,10 +14,4 @@ return {
       -- configurations
     },
   },
-  {
-    "LazyVim/LazyVim",
-    opts = {
-      colorscheme = "catppuccin",
-    },
-  },
 }

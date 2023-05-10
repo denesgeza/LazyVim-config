@@ -29,6 +29,14 @@ return {
         },
       },
       overrides = function(colors) -- add/modify highlights
+        -- Get the colors for the current theme
+        local colors = require("kanagawa.colors").setup()
+        local palette_colors = colors.palette
+        local theme_colors = colors.theme
+
+        -- Get the colors for a specific theme
+        local wave_colors = require("kanagawa.colors").setup({ theme = "wave" })
+
         local theme = colors.theme
         return {
           -- TelescopeTitle = { fg = theme.ui.special, bold = true },
@@ -51,7 +59,7 @@ return {
           -- set their background accordingly if you wish to keep them dark and borderless
           LazyNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
           MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
-          Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_p1 },
+          Pmenu = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m3 },
           PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
           PmenuSbar = { bg = theme.ui.bg_m1 },
           PmenuThumb = { bg = theme.ui.bg_p2 },
@@ -64,10 +72,4 @@ return {
       },
     })
   end,
-  {
-    "LazyVim/LazyVim",
-    opts = {
-      colorscheme = "catppuccin",
-    },
-  },
 }

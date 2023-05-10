@@ -50,3 +50,7 @@ vim.keymap.set("n", "<C-k>", "<cmd> TmuxNavigateUp<CR>", { desc = "Window Up" })
 -- Code folding
 vim.keymap.set("n", "zR", require("ufo").openAllFolds, { desc = "Open All Folds" })
 vim.keymap.set("n", "zM", require("ufo").closeAllFolds, { desc = "Close All Folds" })
+
+-- Hop
+vim.keymap.set("n", "s", ":HopWord<cr>", { desc = "Hop to word" })
+vim.keymap.set("n", "S", ":HopPattern<cr>", { desc = "Hop to Pattern" })
