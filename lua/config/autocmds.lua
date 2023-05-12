@@ -14,3 +14,6 @@ vim.api.nvim_create_autocmd("ColorScheme", {
     end
   end,
 })
+-- ToggleTerm default keymapping
+-- if you only want these mappings for toggle term use term://*toggleterm#* instead
+vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")

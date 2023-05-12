@@ -38,7 +38,7 @@ vim.keymap.set("n", "<leader>tx", ":tabclose<CR>", { desc = "Close tab" }) -- cl
 vim.keymap.set("n", "n", "nzz", { noremap = true })
 
 -- Projects
--- vim.keymap.set("n", "<leader>P", ":Telescope projects<CR>") -- Not installed
+vim.keymap.set("n", "<leader>P", ":Telescope projects<CR>", { desc = "Projects" }) -- Not installed
 vim.keymap.set("n", "<leader>tp", ":tabp<CR>") --  go to previous tab
 
 -- Tmux Navigation
@@ -54,3 +54,17 @@ vim.keymap.set("n", "zM", require("ufo").closeAllFolds, { desc = "Close All Fold
 -- Hop
 vim.keymap.set("n", "s", ":HopWord<cr>", { desc = "Hop to word" })
 vim.keymap.set("n", "S", ":HopPattern<cr>", { desc = "Hop to Pattern" })
+
+-- Terminal
+vim.keymap.set("n", "<C-t>", "<cmd>ToggleTerm size=12 direction=float<CR>", { desc = "Terminal" })
+function _G.set_terminal_keymaps()
+  local opts = { buffer = 0 }
+  vim.keymap.set("t", "<esc>", [[<C-\><C-n>]], opts)
+  vim.keymap.set("t", "kj", [[<C-\><C-n>]], opts)
+  vim.keymap.set("t", "jk", [[<C-\><C-n>]], opts)
+  vim.keymap.set("t", "<C-h>", [[<Cmd>wincmd h<CR>]], opts)
+  vim.keymap.set("t", "<C-j>", [[<Cmd>wincmd j<CR>]], opts)
+  vim.keymap.set("t", "<C-k>", [[<Cmd>wincmd k<CR>]], opts)
+  vim.keymap.set("t", "<C-l>", [[<Cmd>wincmd l<CR>]], opts)
+  vim.keymap.set("t", "<C-w>", [[<C-\><C-n><C-w>]], opts)
+end
