@@ -31,9 +31,6 @@ vim.keymap.set("n", "<leader>l", "<C-w>l", { desc = "Right window" }) -- jump to
 vim.keymap.set("n", "<leader>j", "<C-w>j", { desc = "Bottom window" }) -- jump to window on the bottom
 vim.keymap.set("n", "<leader>k", "<C-w>k", { desc = "Top window" }) -- jump to window on the top
 
--- Tabs
-vim.keymap.set("n", "<leader>tx", ":tabclose<CR>", { desc = "Close tab" }) -- close current tab
-
 -- Search in the middle
 vim.keymap.set("n", "n", "nzz", { noremap = true })
 
@@ -51,9 +48,9 @@ vim.keymap.set("n", "<C-k>", "<cmd> TmuxNavigateUp<CR>", { desc = "Window Up" })
 vim.keymap.set("n", "zR", require("ufo").openAllFolds, { desc = "Open All Folds" })
 vim.keymap.set("n", "zM", require("ufo").closeAllFolds, { desc = "Close All Folds" })
 
--- Hop
-vim.keymap.set("n", "s", ":HopWord<cr>", { desc = "Hop to word" })
-vim.keymap.set("n", "S", ":HopPattern<cr>", { desc = "Hop to Pattern" })
+-- Hop  -- used for nvim leap by default
+-- vim.keymap.set("n", "s", ":HopWord<cr>", { desc = "Hop to word" })
+-- vim.keymap.set("n", "S", ":HopPattern<cr>", { desc = "Hop to Pattern" })
 
 -- Terminal
 vim.keymap.set("n", "<C-m>", "<cmd>ToggleTerm size=12 direction=float<CR>", { desc = "Terminal" })

@@ -1,5 +1,6 @@
 {
     "diagnostics.globals": [
         "lualine_nightfly"
-    ]
+    ],
+    "workspace.checkThirdParty": false
 }
