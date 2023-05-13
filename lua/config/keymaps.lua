@@ -56,7 +56,7 @@ vim.keymap.set("n", "s", ":HopWord<cr>", { desc = "Hop to word" })
 vim.keymap.set("n", "S", ":HopPattern<cr>", { desc = "Hop to Pattern" })
 
 -- Terminal
-vim.keymap.set("n", "<C-t>", "<cmd>ToggleTerm size=12 direction=float<CR>", { desc = "Terminal" })
+vim.keymap.set("n", "<C-m>", "<cmd>ToggleTerm size=12 direction=float<CR>", { desc = "Terminal" })
 function _G.set_terminal_keymaps()
   local opts = { buffer = 0 }
   vim.keymap.set("t", "<esc>", [[<C-\><C-n>]], opts)
