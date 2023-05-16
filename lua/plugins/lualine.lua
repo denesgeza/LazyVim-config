@@ -68,6 +68,10 @@ local function modified()
   return ""
 end
 
+local function maximize_status()
+  return vim.t.maximized and "   " or ""
+end
+
 return {
   "nvim-lualine/lualine.nvim",
   name = "lualine",
@@ -118,7 +122,7 @@ return {
             end,
           },
         },
-        lualine_c = {},
+        lualine_c = { maximize_status },
         lualine_x = { "encoding", "fileformat" },
         lualine_y = { search_result, "filetype" },
         lualine_z = { "%l:%c", "%p%%/%L" },
