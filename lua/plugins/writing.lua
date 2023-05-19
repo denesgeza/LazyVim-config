@@ -16,6 +16,7 @@ return {
         nls.builtins.code_actions.proselint,
         nls.builtins.diagnostics.alex,
         nls.builtins.diagnostics.write_good,
+        -- nls.builtins.diagnostics.eslint,
       })
     end,
   },

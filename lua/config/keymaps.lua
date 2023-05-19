@@ -72,3 +72,6 @@ end
 vim.keymap.set("n", "<Leader>wt", "<Cmd>lua require('maximize').toggle()<CR>", { desc = "Toggle maximize" })
 vim.keymap.set("n", "<Leader>wr", "<Cmd>lua require('maximize').restore()<CR>", { desc = "Window Restore" })
 vim.keymap.set("n", "<Leader>wm", "<Cmd>lua require('maximize').maximize()<CR>", { desc = "Maximize" })
+
+-- Outline
+vim.keymap.set("n", "<Leader>o", "<Cmd>SymbolsOutline<CR>", { desc = "Outline" })
