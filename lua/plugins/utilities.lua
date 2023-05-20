@@ -10,6 +10,21 @@ return {
   },
 
   -- ----------------------------------------------------------------------- }}}
+  -- {{{ maximize
+  {
+    "declancm/maximize.nvim",
+    enabled = Is_Enabled("maximize"),
+    opts = {
+      default_keymaps = false,
+    },
+    config = function()
+      require("maximize").setup({
+        default_keymaps = false,
+      })
+    end,
+  },
+
+  -- ----------------------------------------------------------------------- }}}
   -- {{{ vim-bbye
 
   {

@@ -39,15 +39,35 @@ return {
   },
 
   -- ----------------------------------------------------------------------- }}}
+  -- {{{ everforest
+
+  {
+    "neanias/everforest-nvim",
+    enabled = Is_Enabled("everforest"),
+    version = false,
+    lazy = false,
+    priority = 1000, -- make sure to load this before all the other start plugins
+    -- Optional; default configuration will be used if setup isn't called.
+    config = function()
+      require("everforest").setup({
+        -- Your config here
+      })
+    end,
+  },
+
+  -- ----------------------------------------------------------------------- }}}
   -- {{{ Catpuccin
 
-  -- {
-  --   "catppuccin/nvim",
-  --   enabled = Is_Enabled("catppuccin"),
-  --   lazy = false,
-  --   priority = 1000,
-  --   opts = {},
-  -- },
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    enabled = Is_Enabled("catppuccin"),
+    lazy = false,
+    priority = 1000,
+    config = function()
+      vim.cmd([[colorscheme "catppuccin"]])
+    end,
+  },
 
   -- ----------------------------------------------------------------------- }}}
   -- {{{ nvim-colorizer

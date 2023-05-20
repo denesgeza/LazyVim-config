@@ -8,3 +8,7 @@ foo.*
 data
 .idea
 idea/*
+
+lazy-lock.json
+.luarc.json
+.neoconf.json
