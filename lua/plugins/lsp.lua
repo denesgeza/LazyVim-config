@@ -9,11 +9,11 @@ return {
     cmd = "Mason",
     enabled = Is_Enabled("mason.nvim"),
     keys = { { "<leader>cm", "<cmd>Mason<cr> " } },
-    opts = { ensure_installed = Constants.ensure_installed.mason, },
+    opts = { ensure_installed = Constants.ensure_installed.mason },
   },
 
   -- ----------------------------------------------------------------------- }}}
-  -- {{{ nvim-lspconfi
+  -- {{{ nvim-lspconfig
 
   {
     "neovim/nvim-lspconfig",
@@ -34,7 +34,28 @@ return {
         marksman = {},
         pyright = {},
         svelte = {},
-        tsserver = {},
+        -- @type lspconfig.options.tsserver
+        tsserver = {
+          settings = {
+            typescript = {
+              format = {
+                indentSize = vim.o.shiftwidth,
+                convertTabsToSpaces = vim.o.expandtab,
+                tabSize = vim.o.tabstop,
+              },
+            },
+            javascript = {
+              format = {
+                indentSize = vim.o.shiftwidth,
+                convertTabsToSpaces = vim.o.expandtab,
+                tabSize = vim.o.tabstop,
+              },
+            },
+            completions = {
+              completeFunctionCalls = true,
+            },
+          },
+        },
         yamlls = {},
 
         lua_ls = {

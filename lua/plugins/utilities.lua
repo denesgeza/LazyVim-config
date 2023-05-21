@@ -106,7 +106,7 @@ return {
     opts = {
       size = 13,
       hide_numbers = true,
-      -- open_mapping = [[<c-\>]],
+      open_mapping = [[<c-\>]],
       shade_filetypes = {},
       shading_factor = 2,
       shade_terminals = true,

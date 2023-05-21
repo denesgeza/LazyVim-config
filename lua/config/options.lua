@@ -18,8 +18,8 @@ local options = {
   expandtab = true,
   fillchars = { fold = " ", eob = " " },
   -- {{{ Folding
-  foldlevel = 0,
-  foldmethod = "marker",
+  -- foldlevel = 0,
+  -- foldmethod = "marker",
   -- ------------------------------------------------------------------------- }}}
   hidden = true,
   ignorecase = true,

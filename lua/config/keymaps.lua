@@ -150,8 +150,6 @@ Keymap("n", "<leader>J", "myvipJ`ygq<cr>")
 Keymap("n", "<leader>wv", "<C-w>v", { desc = "Split vertically" }) -- split window vertically
 Keymap("n", "<leader>we", "<C-w>=", { desc = "Equal split windows" }) -- make split windows equal width & height
 Keymap("n", "<leader>wh", "<C-w>s", { desc = "Split horizontally" }) -- split window horizontally
-Keymap("n", "<leader>wx", ":close<CR>", { desc = "Close window" }) -- close current split window
-
 -- Maximize window
 Keymap("n", "<Leader>wt", "<Cmd>lua require('maximize').toggle()<CR>", { desc = "Toggle maximize" })
 Keymap("n", "<Leader>wr", "<Cmd>lua require('maximize').restore()<CR>", { desc = "Restore" })
@@ -204,13 +202,11 @@ Keymap("n", "<Leader>O", "<cmd>SymbolsOutline<CR>", { desc = "Outline" })
 Keymap("n", "<leader>P", ":Telescope projects<CR>", { desc = "Projects" }) -- Not installed
 
 -- ------------------------------------------------------------------------- }}}
--- {{{ T - Terminals  TODO: These are not working properly
 
 if Is_Enabled("toggleterm.nvim") then
-	Keymap("n", "<leader>Tf", [[<cmd>lua Customize.toggleterm.float()<cr>]])
-	Keymap("n", "<leader>Tl", [[<cmd>lua Customize.toggleterm.lazygit()<cr>]])
-	Keymap("n", "<leader>Tm", [[<cmd>lua Customize.toggleterm.neomutt()<cr>]])
-	Keymap("n", "<leader>Tr", [[<cmd>lua Customize.toggleterm.ranger()<cr>]])
+	Keymap("n", "<leader>Tf", [[<cmd>lua Customize.toggleterm.float()<cr>]], { desc = "Float"})
+	Keymap("n", "<leader>Th", "<cmd>ToggleTerm size=12 direction=horizontal<cr>", { desc = "Horizontal"})
+	Keymap("n", "<leader>Tr", [[<cmd>lua Customize.toggleterm.ranger()<cr>]], { desc = "Ranger" })
 end
 
 -- ------------------------------------------------------------------------- }}}
@@ -255,3 +251,4 @@ function _G.set_terminal_keymaps()
   Keymap("t", "<C-l>", [[<Cmd>wincmd l<CR>]], opts)
   Keymap("t", "<C-w>", [[<C-\><C-n><C-w>]], opts)
 end
+

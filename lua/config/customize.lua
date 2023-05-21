@@ -19,7 +19,7 @@ Customize = {
 		["LuaSnip"] = { enabled = true },
     ["lualine.nvim"] = { enabled = true, defaults = false },
 		["leap.nvim"] = { enabled = false },
-    ["noice.nvim"] = { enabled = true, defaults = false },
+    ["noice.nvim"] = { enabled= true, defaults = false },
     ["nvim-notify"] = { enabled = true, defaults = false },
     ["which-key.nvim"] = { enabled = true },
     ["gitsigns.nvim"] = { enabled = true },
@@ -60,6 +60,7 @@ Customize = {
 		["trouble.nvim"] = { enabled = true },
 		["vimtex"] = { enabled = true },
 		["vim-bundle-vimtex"] = { enabled = true },
+    ["ufo"] = { enabled = true },
     -- Editing
 		["bullets.vim"] = { enabled = true },
 		["clipboard-image.nvim"] = { enabled = true },

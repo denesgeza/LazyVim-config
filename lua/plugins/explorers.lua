@@ -24,7 +24,7 @@ return {
         opts = opts
       else
         opts.filesystem = { bind_to_cwd = false, follow_current_file = true }
-        opts.window = { position = "right" }
+        opts.window = { position = "left" }
       end
     end,
   },

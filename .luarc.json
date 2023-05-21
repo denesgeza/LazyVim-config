@@ -1,6 +1,7 @@
 {
     "diagnostics.globals": [
-        "lualine_nightfly"
+        "lualine_nightfly",
+        "vim"
     ],
     "workspace.checkThirdParty": false
 }
