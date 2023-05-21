@@ -71,7 +71,6 @@ if Is_Enabled("telescope.nvim") then
   Keymap("n", "<leader>fM", "<cmd>Telescope man_pages<cr>")
   Keymap("n", "<leader>fO", "<cmd>Telescope oldfiles<cr>")
   Keymap("n", "<leader>fR", "<cmd>Telescope registers<cr>")
-  Keymap("n", "<leader>fS", "<cmd>Telescope colorscheme<cr>")
   Keymap("n", "<leader>fb", "<cmd>Telescope buffers<cr>")
   Keymap("n", "<leader>fd", "<cmd>Telescope diagnostics<cr>")
   Keymap("n", "<leader>ff", "<cmd>Telescope find_files<cr>")
@@ -132,6 +131,18 @@ Keymap("n", "<leader>H", "<cmd>silent vert bo help<cr>", { desc = "Help" })
 
 -- LazyVim
 Keymap("n", "<leader>L", "<cmd>:Lazy<cr>", { desc = "Lazy" })
+-- Keymap("n", "<leader>Lh", "<cmd>Lazy home<cr>")
+-- Keymap("n", "<leader>Ll", "<cmd>Lazy log<cr>")
+-- Keymap("n", "<leader>Lp", "<cmd>Lazy profile<cr>")
+-- Keymap("n", "<leader>Ls", "<cmd>Lazy sync<cr>")
+-- Keymap("n", "<leader>Lu", "<cmd>Lazy update<cr>")
+
+-- ------------------------------------------------------------------------- }}}
+-- {{{ J - Join
+--  Keep the cursor in place while joining lines.
+
+Keymap("n", "J", "mzJ`z")
+Keymap("n", "<leader>J", "myvipJ`ygq<cr>")
 
 -- ------------------------------------------------------------------------- }}}
 -- {{{ w - Window
@@ -145,6 +156,27 @@ Keymap("n", "<leader>wx", ":close<CR>", { desc = "Close window" }) -- close curr
 Keymap("n", "<Leader>wt", "<Cmd>lua require('maximize').toggle()<CR>", { desc = "Toggle maximize" })
 Keymap("n", "<Leader>wr", "<Cmd>lua require('maximize').restore()<CR>", { desc = "Restore" })
 Keymap("n", "<Leader>wm", "<Cmd>lua require('maximize').maximize()<CR>", { desc = "Maximize" })
+
+-- ------------------------------------------------------------------------- }}}
+-- {{{ n - File explorers
+
+if Is_Enabled("neo-tree.nvim") or Is_Enabled("nvim-tree") then
+  -- nvim_tree takes precedence when both are true.
+  if Is_Enabled("nvim-tree") then
+    Keymap("n", "<leader>e", "<cmd>NvimTreeToggle<cr>")
+    Keymap("n", "<leader>nf", "<cmd>NvimTreeFindFile<cr>")
+    Keymap("n", "<leader>nr", "<cmd>NvimTreeRefresh<cr>")
+  else
+    Keymap("n", "<leader>e", "<cmd>Neotree toggle<cr>")
+    Keymap("n", "<leader>nf", "<cmd>Neotree focus<cr>")
+    Keymap("n", "<leader>nr", "<cmd>Neotree show<cr>")
+  end
+end
+
+if Is_Enabled("noice.nvim") then
+  Keymap("n", "<leader>ne", "<cmd>NoiceErrors<cr>")
+  Keymap("n", "<leader>nh", "<cmd>NoiceHistory<cr>")
+end
 
 -- ------------------------------------------------------------------------- }}}
 -- {{{ o - Options
@@ -162,54 +194,64 @@ if Is_Enabled("zen-mode.nvim") then
 end
 
 -- ------------------------------------------------------------------------- }}}
+-- {{{ O - Outline
+
+Keymap("n", "<Leader>O", "<cmd>SymbolsOutline<CR>", { desc = "Outline" })
+
+-- ------------------------------------------------------------------------- }}}
 -- {{{ P - Projects
 
 Keymap("n", "<leader>P", ":Telescope projects<CR>", { desc = "Projects" }) -- Not installed
 
 -- ------------------------------------------------------------------------- }}}
+-- {{{ T - Terminals  TODO: These are not working properly
 
-vim.keymap.set(
-  "n",
-  "<leader>sx",
-  require("telescope.builtin").resume,
-  { noremap = true, silent = true, desc = "Resume" }
-)
-
--- Search in the middle
-vim.keymap.set("n", "n", "nzz", { noremap = true })
-
--- Tmux Navigation
-vim.keymap.set("n", "<C-h>", "<cmd> TmuxNavigateLeft<CR>", { desc = "Window Left" })
-vim.keymap.set("n", "<C-l>", "<cmd> TmuxNavigateRight<CR>", { desc = "Window Right" })
-vim.keymap.set("n", "<C-j>", "<cmd> TmuxNavigateDown<CR>", { desc = "Window Down" })
-vim.keymap.set("n", "<C-k>", "<cmd> TmuxNavigateUp<CR>", { desc = "Window Up" })
-
--- Code folding
--- vim.keymap.set("n", "<leader>z", "Folding", { desc = "Folding" })
-vim.keymap.set("n", "zR", require("ufo").openAllFolds, { desc = "Open All Folds" })
-vim.keymap.set("n", "zM", require("ufo").closeAllFolds, { desc = "Close All Folds" })
-
--- Hop  -- used for nvim leap by default
-vim.keymap.set("n", "s", ":HopChar1<cr>", { desc = "Hop to word" })
-vim.keymap.set("n", "S", ":HopPattern<cr>", { desc = "Hop to Pattern" })
-
--- Terminal -- DEBUG C-m mapping
-vim.keymap.set("n", "<C-m>", "<cmd>ToggleTerm size=12 direction=float<CR>", { desc = "Terminal" })
-vim.keymap.set("n", "<leader>T", "ToggleTerm size=80 direction=vertical<CR>", { desc = "Terminal" })
-vim.keymap.set("n", "<leader>Tv", "<cmd>ToggleTerm size=80 direction=vertical<CR>", { desc = "Vertical" })
-vim.keymap.set("n", "<leader>Th", "<cmd>ToggleTerm size=12 direction=horizontal<CR>", { desc = "Horizontal" })
-
-function _G.set_terminal_keymaps()
-  local opts = { buffer = 0 }
-  vim.keymap.set("t", "<esc>", [[<C-\><C-n>]], opts)
-  vim.keymap.set("t", "kj", [[<C-\><C-n>]], opts)
-  vim.keymap.set("t", "jk", [[<C-\><C-n>]], opts)
-  vim.keymap.set("t", "<C-h>", [[<Cmd>wincmd h<CR>]], opts)
-  vim.keymap.set("t", "<C-j>", [[<Cmd>wincmd j<CR>]], opts)
-  vim.keymap.set("t", "<C-k>", [[<Cmd>wincmd k<CR>]], opts)
-  vim.keymap.set("t", "<C-l>", [[<Cmd>wincmd l<CR>]], opts)
-  vim.keymap.set("t", "<C-w>", [[<C-\><C-n><C-w>]], opts)
+if Is_Enabled("toggleterm.nvim") then
+	Keymap("n", "<leader>Tf", [[<cmd>lua Customize.toggleterm.float()<cr>]])
+	Keymap("n", "<leader>Tl", [[<cmd>lua Customize.toggleterm.lazygit()<cr>]])
+	Keymap("n", "<leader>Tm", [[<cmd>lua Customize.toggleterm.neomutt()<cr>]])
+	Keymap("n", "<leader>Tr", [[<cmd>lua Customize.toggleterm.ranger()<cr>]])
 end
 
--- Outline
-vim.keymap.set("n", "<Leader>o", "<Cmd>SymbolsOutline<CR>", { desc = "Outline" })
+-- ------------------------------------------------------------------------- }}}
+-- {{{ u - UI
+
+Keymap("n", "<leader>uC", "<cmd>Telescope colorscheme<cr>", { desc = "ColorScheme" })
+
+-- ------------------------------------------------------------------------- }}}
+
+-- Search in the middle
+Keymap("n", "n", "nzz", { noremap = true })
+
+-- -- Tmux Navigation
+-- Keymap("n", "<C-h>", "<cmd> TmuxNavigateLeft<CR>", { desc = "Window Left" })
+-- Keymap("n", "<C-l>", "<cmd> TmuxNavigateRight<CR>", { desc = "Window Right" })
+-- Keymap("n", "<C-j>", "<cmd> TmuxNavigateDown<CR>", { desc = "Window Down" })
+-- Keymap("n", "<C-k>", "<cmd> TmuxNavigateUp<CR>", { desc = "Window Up" })
+--
+-- -- Code folding
+-- -- vim.keymap.set("n", "<leader>z", "Folding", { desc = "Folding" })
+-- Keymap("n", "zR", require("ufo").openAllFolds, { desc = "Open All Folds" })
+-- Keymap("n", "zM", require("ufo").closeAllFolds, { desc = "Close All Folds" })
+--
+-- -- Hop  -- used for nvim leap by default
+-- Keymap("n", "s", ":HopChar1<cr>", { desc = "Hop to word" })
+-- Keymap("n", "S", ":HopPattern<cr>", { desc = "Hop to Pattern" })
+--
+-- -- Terminal -- DEBUG C-m mapping
+-- Keymap("n", "<C-m>", "<cmd> ToggleTerm size=12 direction=float<CR>", { desc = "Terminal" })
+-- Keymap("n", "<leader>T", "<cmd> ToggleTerm size=80 direction=vertical<CR>", { desc = "Terminal" })
+-- Keymap("n", "<leader>Tv", "<cmd> ToggleTerm size=80 direction=vertical<CR>", { desc = "Vertical" })
+-- Keymap("n", "<leader>Th", "<cmd> ToggleTerm size=12 direction=horizontal<CR>", { desc = "Horizontal" })
+--
+function _G.set_terminal_keymaps()
+  local opts = { buffer = 0 }
+  Keymap("t", "<esc>", [[<C-\><C-n>]], opts)
+  Keymap("t", "kj", [[<C-\><C-n>]], opts)
+  Keymap("t", "jk", [[<C-\><C-n>]], opts)
+  Keymap("t", "<C-h>", [[<Cmd>wincmd h<CR>]], opts)
+  Keymap("t", "<C-j>", [[<Cmd>wincmd j<CR>]], opts)
+  Keymap("t", "<C-k>", [[<Cmd>wincmd k<CR>]], opts)
+  Keymap("t", "<C-l>", [[<Cmd>wincmd l<CR>]], opts)
+  Keymap("t", "<C-w>", [[<C-\><C-n><C-w>]], opts)
+end

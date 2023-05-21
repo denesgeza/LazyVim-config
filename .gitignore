@@ -10,5 +10,6 @@ data
 idea/*
 
 lazy-lock.json
+lazy-lock.json
 .luarc.json
 .neoconf.json

@@ -16,7 +16,9 @@ Customize = {
 
   plugins = {
     ["Comment.nvim"] = { enabled = false },
+		["LuaSnip"] = { enabled = true },
     ["lualine.nvim"] = { enabled = true, defaults = false },
+		["leap.nvim"] = { enabled = false },
     ["noice.nvim"] = { enabled = true, defaults = false },
     ["nvim-notify"] = { enabled = true, defaults = false },
     ["which-key.nvim"] = { enabled = true },
@@ -45,16 +47,39 @@ Customize = {
     ["vim-rbenv"] = { enabled = true },
     ["vim-speeddating"] = { enabled = true },
     ["zen-mode.nvim"] = { enabled = true },
+		["neoconf.nvim"] = { enabled = false },
+		["neodev.nvim"] = { enabled = true },
     ["vim-endwise"] = { enabled = true },
     ["nvim-autopairs"] = { enabled = true },
     ["maximize"] = { enabled = true },
 		["vim-bundle-plantuml"] = { enabled = true },
+		["nvim-cmp"] = { enabled = true, defaults = false },
+		["dressing"] = { enabled = true },
+		["flit.nvim"] = { enabled = false },
+		["mini-ai"] = { enabled = false },
+		["trouble.nvim"] = { enabled = true },
+		["vimtex"] = { enabled = true },
+		["vim-bundle-vimtex"] = { enabled = true },
+    -- Editing
+		["bullets.vim"] = { enabled = true },
+		["clipboard-image.nvim"] = { enabled = true },
+    -- Explorers
+		["gem-browse"] = { enabled = true },
+		["neo-tree.nvim"] = { enabled = true, defaults = false },
+		["nvim-tree"] = { enabled = false },
+		["nvim-web-devicons"] = { enabled = true },
     -- Finders
 		["fzf.vim"] = { enabled = true },
 		["vim-projectionist"] = { enabled = true },
 		["telescope.nvim"] = { enabled = true },
 		["telescope-fzf-native.nvim"] = { enabled = true },
 		["todo-comments.nvim"] = { enabled = true  },
+    -- Terminal
+		["toggleterm.nvim"] = { enabled = true },
+    -- LSP
+		["mason.nvim"] = { enabled = true },
+		["nvim-lspconfig"] = { enabled = true },
+		["null-ls.nvim"] = { enabled = true },
     -- TMUX
     ["vim-bundle-tmux-runner"] = { enabled = true },
     ["vim-tmux-navigator"] = { enabled = true },
@@ -71,6 +96,7 @@ Customize = {
     -- Themes
     ["tokyonight.nvim"] = { enabled = true, defaults = false },
     ["everforest"] = { enabled = true },
+    ["gruvbox"] = { enabled = true },
     ["nvim-base16"] = { enabled = false },
     ["catppuccin"] = { enabled = true },
     ["nvim-colorizer.lua"] = { enabled = false },
@@ -86,18 +112,48 @@ Customize = {
   -- {{{ Debug Adapter Protocol (DAP) debuggers
 
   debuggers = {
-    -- ["bash"] = { enabled = false },
-    -- ["dart"] = { enabled = false },
-    -- ["go"] = { enabled = true },
-    -- ["haskell"] = { enabled = false },
-    -- ["java"] = { enabled = false },
+    ["bash"] = { enabled = false },
+    ["dart"] = { enabled = false },
+    ["go"] = { enabled = false },
+    ["haskell"] = { enabled = false },
+    ["java"] = { enabled = false },
     ["lua"] = { enabled = true },
     ["python"] = { enabled = true },
-    ["ruby"] = { enabled = true },
+    ["ruby"] = { enabled = false },
     ["rust"] = { enabled = false },
   },
 
   -- ------------------------------------------------------------------------- }}}
 }
 
+-- {{{ Toggle terminals
+
+Customize.toggleterm = {
+
+	float = function()
+		local Terminal = require("toggleterm.terminal").Terminal
+		local t = Terminal:new({ direction = "float" })
+		return t:toggle()
+	end,
+
+	lazygit = function()
+		local Terminal = require("toggleterm.terminal").Terminal
+		local t = Terminal:new({ cmd = "lazygit", direction = "float" })
+		return t:toggle()
+	end,
+
+	neomutt = function()
+		local Terminal = require("toggleterm.terminal").Terminal
+		local t = Terminal:new({ cmd = "neomutt", direction = "float" })
+		return t:toggle()
+	end,
+
+	ranger = function()
+		local Terminal = require("toggleterm.terminal").Terminal
+		local t = Terminal:new({ cmd = "ranger", direction = "float" })
+		return t:toggle()
+	end,
+}
+
+-- ------------------------------------------------------------------------- }}}
 return Customize

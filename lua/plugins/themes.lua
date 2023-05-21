@@ -4,6 +4,16 @@ Is_Enabled = require("config.functions").is_enabled
 Use_Defaults = require("config.functions").use_plugin_defaults
 
 return {
+
+  -- {{{ gruvbox
+  {
+    "ellisonleao/gruvbox.nvim",
+    enabled = Is_Enabled("gruvbox"),
+    lazy = false,
+    priority = 1000
+  },
+
+  -- ----------------------------------------------------------------------- }}}
   -- {{{ nvim-base16
 
   {

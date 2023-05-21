@@ -99,28 +99,40 @@ return {
   -- ----------------------------------------------------------------------- }}}
   -- {{{ toggleterm.nvim
 
-  -- {
-  --   "akinsho/toggleterm.nvim",
-  --   enabled = Is_Enabled("toggleterm.nvim"),
-  --   version = "*",
-  --   opts = {
-  --     size = 13,
-  --     open_mapping = [[<c-\>]],
-  --     shade_filetypes = {},
-  --     shade_terminals = true,
-  --     shading_factor = "1",
-  --     start_in_insert = true,
-  --     persist_size = true,
-  --     direction = "horizontal",
-  --   },
-  --   keys = {
-  --     {
-  --       "<leader>Tf",
-  --       "<leader>Tl",
-  --       "<leader>Tr",
-  --     },
-  --   },
-  -- },
+  {
+    "akinsho/toggleterm.nvim",
+    enabled = Is_Enabled("toggleterm.nvim"),
+    version = "*",
+    opts = {
+      size = 13,
+      hide_numbers = true,
+      -- open_mapping = [[<c-\>]],
+      shade_filetypes = {},
+      shading_factor = 2,
+      shade_terminals = true,
+      start_in_insert = true,
+      insert_mappings = true,
+      persist_size = true,
+      direction = "horizontal",
+      close_on_exit = true,
+      shell = vim.o.shell,
+      float_opts = {
+        border = "curved",
+        winblend = 0,
+        highlights = {
+          border = "Normal",
+          background = "Normal",
+        },
+      },
+    },
+    -- keys = {
+    --   {
+    --     "<leader>Tf",
+    --     "<leader>Tl",
+    --     "<leader>Tr",
+    --   },
+    -- },
+  },
 
   -- ----------------------------------------------------------------------- }}}
   -- {{{ zen-mode.nvim
