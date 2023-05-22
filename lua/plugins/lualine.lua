@@ -1,4 +1,10 @@
+Constants = require("config.constants")
+local functions = require("config.functions")
+Is_Enabled = functions.is_enabled
+Use_Defaults = functions.use_plugin_defaults
+
 local colors = {
+
   red = "#ca1243",
   grey = "#a0a1a7",
   black = "#383a42",
@@ -19,7 +25,7 @@ local theme = {
   visual = { a = { fg = colors.black, bg = colors.orange } },
   replace = { a = { fg = colors.black, bg = colors.green } },
 }
-
+--
 local empty = require("lualine.component"):extend()
 function empty:draw(default_highlight)
   self.status = ""
@@ -28,7 +34,7 @@ function empty:draw(default_highlight)
   self:apply_section_separators()
   return self.status
 end
-
+--
 -- Put proper separators and gaps between components in sections
 local function process_sections(sections)
   for name, section in pairs(sections) do
@@ -68,23 +74,38 @@ local function modified()
   return ""
 end
 
-local function maximize_status()
-  return vim.t.maximized and "   " or ""
-end
-
 return {
   "nvim-lualine/lualine.nvim",
-  name = "lualine",
   event = "VeryLazy",
-  config = function()
-    require("lualine").setup({
-      options = {
+  enabled = Is_Enabled("lualine.nvim"),
+  opts = function(_, opts)
+    if Use_Defaults("lualine.nvim") then
+      -- Use LazyVim default setup.
+      opts = opts
+    else
+      -- Use my customizations.
+      opts.options = {
         icons_enabled = true,
         theme = "auto",
+        -- component_separators = { left = "", right = "" },
         component_separators = "",
         section_separators = { left = "", right = "" },
-      },
-      sections = process_sections({
+        disabled_filetypes = {
+          winbar = {},
+          statusline = { "alpha", "dashboard" },
+        },
+        ignore_focus = {},
+        always_divide_middle = true,
+        globalstatus = false,
+        refresh = {
+          statusline = 1000,
+          tabline = 1000,
+          winbar = 1000,
+        },
+      }
+
+      -- opts.sections = process_sections({
+      opts.sections = {
         lualine_a = { "mode" },
         lualine_b = {
           "branch",
@@ -101,6 +122,8 @@ return {
             sections = { "warn" },
             diagnostics_color = { warn = { bg = colors.orange, fg = colors.white } },
           },
+        },
+        lualine_c = {
           { "filename", file_status = false, path = 1 },
           { modified, color = { bg = colors.red } },
           {
@@ -122,15 +145,25 @@ return {
             end,
           },
         },
-        lualine_c = { maximize_status },
-        lualine_x = { "encoding", "fileformat" },
-        lualine_y = { search_result, "filetype" },
-        lualine_z = { "%l:%c", "%p%%/%L" },
-      }),
-      inactive_sections = {
-        lualine_c = { "%f %y %m" },
-        -- lualine_x = {},
-      },
-    })
+        lualine_x = { "encoding", "fileformat", "filetype" },
+        lualine_y = { search_result, "progress" },
+        lualine_z = { "%l:%c", "%L" },
+      }
+      -- })
+
+      opts.inactive_sections = {
+        lualine_a = {},
+        lualine_b = {},
+        lualine_c = { "filename" },
+        lualine_x = { "location" },
+        lualine_y = {},
+        lualine_z = {},
+      }
+
+      opts.tabline = {}
+      opts.winbar = {}
+      opts.inactive_winbar = {}
+      opts.extensions = {}
+    end
   end,
 }

@@ -1,6 +1,9 @@
+Is_Enabled = require("config.functions").is_enabled
+
 return {
   {
     "kevinhwang91/nvim-ufo",
+    enabled = Is_Enabled("ufo"),
     event = "BufRead",
     dependencies = {
       { "kevinhwang91/promise-async" },
