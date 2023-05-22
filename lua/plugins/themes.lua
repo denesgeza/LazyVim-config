@@ -10,9 +10,19 @@ return {
     "ellisonleao/gruvbox.nvim",
     enabled = Is_Enabled("gruvbox"),
     lazy = false,
-    priority = 1000
+    priority = 1000,
   },
 
+  -- ----------------------------------------------------------------------- }}}
+  -- {{{ Night-owl
+  {
+    "oxfist/night-owl.nvim",
+    enabled = Is_Enabled("night-owl"),
+    lazy = false,
+    name = "night-owl",
+    priority = 1000,
+    opts = {},
+  },
   -- ----------------------------------------------------------------------- }}}
   -- {{{ nvim-base16
 
@@ -94,7 +104,7 @@ return {
   {
     "xiyaowong/nvim-transparent",
     enabled = Is_Enabled("nvim-transparent"),
-    lazy = true,
+    lazy = false,
     event = "VimEnter",
     opts = {
       enable = true,
@@ -178,14 +188,18 @@ return {
 
   {
     "kovetskiy/sxhkd-vim",
-    event = "VeryLazy",
     enabled = Is_Enabled("sxhkd-vim"),
+    event = "VeryLazy",
+    lazy = false,
+    priority = 1000,
   },
 
   -- ----------------------------------------------------------------------- }}}
+  -- {{{ cobalt2
   {
     "lalitmee/cobalt2.nvim",
-    lazy = true,
+    lazy = false,
+    priority = 1000,
     enabled = Is_Enabled("cobalt2"),
     -- event = { "ColorSchemePre" }, -- if you want to lazy load
     dependencies = { "tjdevries/colorbuddy.nvim" },
@@ -193,4 +207,15 @@ return {
       require("colorbuddy").colorscheme("cobalt2")
     end,
   },
+
+  -- ----------------------------------------------------------------------- }}}
+
+  -- {{{ Set default theme
+  {
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = "kanagawa",
+    },
+  },
+  -- ----------------------------------------------------------------------- }}}
 }

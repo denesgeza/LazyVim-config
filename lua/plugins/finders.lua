@@ -34,11 +34,11 @@ return {
     keys = false,
     opts = {
       defaults = {
-        layout_config = { prompt_position = "top" },
+        layout_config = { prompt_position = "bottom" },
         layout_strategy = "horizontal",
         prompt_prefix = " ",
         selection_caret = " ",
-        sorting_strategy = "ascending",
+        sorting_strategy = "descending",
         winblend = 0,
       },
       pickers = {

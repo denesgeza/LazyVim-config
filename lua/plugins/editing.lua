@@ -1,7 +1,7 @@
 Is_Enabled = require("config.functions").is_enabled
 
 local bullets = "bullets.vim"
-local clipboard = "clipboard-image.nvim"
+local plugin = "nvim-spectre"
 
 return {
   -- {{{ bullets.nvim
@@ -13,13 +13,20 @@ return {
   },
 
   -- ----------------------------------------------------------------------- }}}
-  -- {{{ clipboard-image.nvim
-
+  -- {{{ nvim-spectre
   {
-    "ekickx/" .. clipboard,
+    "nvim-pack/" .. plugin,
     event = { "BufReadPost", "BufNewFile" },
-    enabled = Is_Enabled(clipboard),
+    enabled = Is_Enabled(plugin),
+    keys = {
+      {
+        "<leader>sr",
+        function()
+          require("spectre").open()
+        end,
+        desc = "Replace in files (Spectre)",
+      },
+    },
   },
-
   -- ----------------------------------------------------------------------- }}}
 }

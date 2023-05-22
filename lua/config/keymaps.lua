@@ -66,21 +66,23 @@ Keymap("n", "<leader>bx", [[<cmd>w<cr><cmd>luafile %<cr><cmd>echo "Sourced " . @
 -- {{{ f - Find & tmux
 
 if Is_Enabled("telescope.nvim") then
-  Keymap("n", "<leader>fC", "<cmd>Telescope commands<cr>")
+  Keymap("n", "<leader><leader>", "<cmd>Telescope git_files<cr>", { desc = "Git Files"})
+  Keymap("n", "<leader>fC", "<cmd>Telescope commands<cr>", { desc = "Commands" })
   Keymap("n", "<leader>fF", "<cmd>Telescope media_files<cr>")
-  Keymap("n", "<leader>fM", "<cmd>Telescope man_pages<cr>")
-  Keymap("n", "<leader>fO", "<cmd>Telescope oldfiles<cr>")
-  Keymap("n", "<leader>fR", "<cmd>Telescope registers<cr>")
-  Keymap("n", "<leader>fb", "<cmd>Telescope buffers<cr>")
-  Keymap("n", "<leader>fd", "<cmd>Telescope diagnostics<cr>")
-  Keymap("n", "<leader>ff", "<cmd>Telescope find_files<cr>")
-  Keymap("n", "<leader>fg", "<cmd>Telescope live_grep<cr>")
-  Keymap("n", "<leader>fh", "<cmd>Telescope help_tags<cr>")
-  Keymap("n", "<leader>fk", "<cmd>Telescope keymaps<cr>")
-  Keymap("n", "<leader>fl", "<cmd>Telescope resume<cr>")
-  Keymap("n", "<leader>fo", "<cmd>Telescope oldfiles<cr>")
-  Keymap("n", "<leader>fp", "<cmd>Telescope planets<cr>")
-  Keymap("n", "<leader>fw", "<cmd>Telescope grep_string<cr>")
+  Keymap("n", "<leader>fM", "<cmd>Telescope man_pages<cr>", { desc = "Manual Pages" })
+  Keymap("n", "<leader>fR", "<cmd>Telescope registers<cr>", { desc = "Registers" })
+  Keymap("n", "<leader>fb", "<cmd>Telescope buffers<cr>", { desc = "Buffers" })
+  Keymap("n", "<leader>fd", "<cmd>Telescope diagnostics<cr>", { desc = "Diagnostics"})
+  Keymap("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Find Files" })
+  Keymap("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", { desc = "Grep `live`" })
+  Keymap("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", { desc = "Help tags" })
+  Keymap("n", "<leader>fk", "<cmd>Telescope keymaps<cr>", { desc = "Keymaps" })
+  Keymap("n", "<leader>fl", "<cmd>Telescope resume<cr>", { desc = "Resume" })
+  Keymap("n", "<leader>fo", "<cmd>Telescope oldfiles<cr>", { desc = "Old files" })
+  Keymap("n", "<leader>fp", "<cmd>Telescope planets<cr>", { desc = "Planets" })
+  Keymap("n", "<leader>P", ":Telescope projects<CR>", { desc = "Projects" }) -- Not installed
+  Keymap("n", "<leader>fw", "<cmd>Telescope grep_string<cr>", { desc = "Find words" })
+  Keymap("n", "<leader>fn", "<cmd>Telescope notify<cr>", { desc = "Notifications" })
 end
 
 if Is_Enabled("todo-comments.nvim") then
@@ -197,9 +199,10 @@ end
 Keymap("n", "<Leader>O", "<cmd>SymbolsOutline<CR>", { desc = "Outline" })
 
 -- ------------------------------------------------------------------------- }}}
--- {{{ P - Projects
+-- {{{ s - Hop
 
-Keymap("n", "<leader>P", ":Telescope projects<CR>", { desc = "Projects" }) -- Not installed
+Keymap("n", "s", ":HopChar1<cr>", { desc = "Hop to word" })
+Keymap("n", "S", ":HopPattern<cr>", { desc = "Hop to Pattern" })
 
 -- ------------------------------------------------------------------------- }}}
 
@@ -229,10 +232,6 @@ Keymap("n", "n", "nzz", { noremap = true })
 -- -- vim.keymap.set("n", "<leader>z", "Folding", { desc = "Folding" })
 -- Keymap("n", "zR", require("ufo").openAllFolds, { desc = "Open All Folds" })
 -- Keymap("n", "zM", require("ufo").closeAllFolds, { desc = "Close All Folds" })
---
--- -- Hop  -- used for nvim leap by default
--- Keymap("n", "s", ":HopChar1<cr>", { desc = "Hop to word" })
--- Keymap("n", "S", ":HopPattern<cr>", { desc = "Hop to Pattern" })
 --
 -- -- Terminal -- DEBUG C-m mapping
 -- Keymap("n", "<C-m>", "<cmd> ToggleTerm size=12 direction=float<CR>", { desc = "Terminal" })

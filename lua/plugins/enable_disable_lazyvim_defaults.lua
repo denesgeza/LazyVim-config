@@ -4,7 +4,7 @@ Is_Enabled = require("config.functions").is_enabled
 return {
   -- {{{ Disable LazyVim plugins I don't use or use LazyVim defaults. As an
   -- example, I use the default LazyVim implementation for null-ls.nvim.
- -- { "echasnovski/mini.ai", enabled = Is_Enabled("mini-ai") },
+ { "echasnovski/mini.ai", enabled = Is_Enabled("mini-ai") },
   -- { "echasnovski/mini.comment", enabled = Is_Enabled("mini-comment") },
   -- { "echasnovski/mini.indentscope", enabled = Is_Enabled("mini-indentscope") },
   -- { "echasnovski/mini.pairs", enabled = Is_Enabled("mini-pairs") },
