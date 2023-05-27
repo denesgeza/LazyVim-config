@@ -15,6 +15,7 @@ Customize = {
   -- {{{ Enable or disable plugins.
 
   plugins = {
+    ["alpha-nvim"] = { enabled = false },
     ["Comment.nvim"] = { enabled = false },
 		["LuaSnip"] = { enabled = true },
     ["lualine.nvim"] = { enabled = true, defaults = false },
@@ -24,7 +25,7 @@ Customize = {
     ["which-key.nvim"] = { enabled = true },
     ["gitsigns.nvim"] = { enabled = true },
     ["popup.nvim"] = { enabled = false },
-    ["vim-most-minimal-folds"] = { enabled = true },
+    ["vim-most-minimal-folds"] = { enabled = false },
     ["virtcolumn.nvim"] = { enabled = true },
     ["markdown-preview.nvim"] = { enabled = true },
     ["indent-blankline"] = { enabled = true, defaults = false },
@@ -33,21 +34,22 @@ Customize = {
     ["nvim-surround"] = { enabled = true },
     ["vim-repeat"] = { enabled = true },
     ["harpoon"] = { enabled = true, defaults=false},
-    ["vim-unimpaired"] = { enabled = true },
+    ["vim-unimpaired"] = { enabled = false },
     ["vim-easy-align"] = { enabled = true },
     ["neoformat"] = { enabled = false },
 		["neoconf.nvim"] = { enabled = false },
 		["neodev.nvim"] = { enabled = true },
     ["vim-endwise"] = { enabled = true },
     ["nvim-autopairs"] = { enabled = true },
-		["vim-bundle-plantuml"] = { enabled = true },
+		["vim-bundle-plantuml"] = { enabled = false },
 		["nvim-cmp"] = { enabled = true, defaults = false },
 		["dressing"] = { enabled = true },
 		["flit.nvim"] = { enabled = false },
-		["mini-ai"] = { enabled = false },
+		["mini-ai"] = { enabled = true },
+		-- ["mini-starter"] = { enabled = true },
 		["trouble.nvim"] = { enabled = true },
-		["vimtex"] = { enabled = true },
-		["vim-bundle-vimtex"] = { enabled = true },
+		["vimtex"] = { enabled = false },
+		["vim-bundle-vimtex"] = { enabled = false },
     -- Utilities
     ["vim-bundler"] = { enabled = true },
     ["maximize"] = { enabled = true },
@@ -55,21 +57,21 @@ Customize = {
     ["vim-eunuch"] = { enabled = true },
     ["vim-dispatch"] = { enabled = true },
     ["vim-fugitive"] = { enabled = true },
-    ["vim-rails"] = { enabled = true },
-    ["vim-rake"] = { enabled = true },
+    ["vim-rails"] = { enabled = false },
+    ["vim-rake"] = { enabled = false },
     ["vim-rbenv"] = { enabled = true },
-        ["vim-speeddating"] = { enabled = true },
+    ["vim-speeddating"] = { enabled = false },
     ["zen-mode.nvim"] = { enabled = true },
-        -- Terminal
+      -- Terminal
 		["toggleterm.nvim"] = { enabled = true },
     -- Folding
     ["ufo"] = { enabled = true },
     -- Editing
-		["bullets.vim"] = { enabled = true },
+		["bullets.vim"] = { enabled = false },
     ["nvim-spectre"] = { enabled = true },
     -- Explorers
-		["gem-browse"] = { enabled = true },
-		["neo-tree.nvim"] = { enabled = true, defaults = false },
+		["gem-browse"] = { enabled = false },
+		["neo-tree.nvim"] = { enabled = true, defaults = true },
 		["nvim-tree"] = { enabled = false },
 		["nvim-web-devicons"] = { enabled = true },
     -- Finders
@@ -84,32 +86,33 @@ Customize = {
 		["null-ls.nvim"] = { enabled = true },
     ["nvim-treesitter"] = { enabled = true, defaults = true },
     -- TMUX
-    ["vim-bundle-tmux-runner"] = { enabled = true },
-    ["vim-tmux-navigator"] = { enabled = true },
-    ["vim-tmux-runner"] = { enabled = true },
+    ["vim-bundle-tmux-runner"] = { enabled = false },
+    ["vim-tmux-navigator"] = { enabled = false },
+    ["vim-tmux-runner"] = { enabled = false },
     -- DAP
-		["telescope-dap.nvim"] = { enabled = true },
-		["mason-nvim-dap.nvim"] = { enabled = true },
-    ["nvim-dap"] = { enabled = true },
-    ["nvim-dap-go"] = { enabled = true },
+		["telescope-dap.nvim"] = { enabled = false },
+		["mason-nvim-dap.nvim"] = { enabled = false },
+    ["nvim-dap"] = { enabled = false },
+    ["nvim-dap-go"] = { enabled = false },
     ["nvim-dap-python"] = { enabled = true },
-    ["nvim-dap-ruby"] = { enabled = true },
-    ["nvim-dap-ui"] = { enabled = true, defaults = false },
-    ["nvim-dap-virtual-text"] = { enabled = true },
+    ["nvim-dap-ruby"] = { enabled = false },
+    ["nvim-dap-ui"] = { enabled = false, defaults = false },
+    ["nvim-dap-virtual-text"] = { enabled = false },
     -- Themes
     ["tokyonight.nvim"] = { enabled = true, defaults = false },
     ["everforest"] = { enabled = true },
+    ["kanagawa"] = { enabled = true },
     ["night-owl"] = { enabled = true },
     ["gruvbox"] = { enabled = true },
-    ["nvim-base16"] = { enabled = false },
+    ["nvim-base16"] = { enabled = true },
     ["catppuccin"] = { enabled = true },
     ["nvim-colorizer.lua"] = { enabled = false },
     -- Can disable background
     ["nvim-transparent"] = { enabled = false },
-    ["nvim-ts-rainbow"] = { enabled = true },
+    ["nvim-ts-rainbow"] = { enabled = false },
     ["rainbow_csv"] = { enabled = true },
     ["sxhkd-vim"] = { enabled = false },
-    ["cobalt2"] = { enabled = true },
+    ["cobalt2"] = { enabled = false },
   },
 
   -- {{{ Debug Adapter Protocol (DAP) debuggers
@@ -138,6 +141,12 @@ Customize.toggleterm = {
 		local t = Terminal:new({ direction = "float" })
 		return t:toggle()
 	end,
+
+  horizontal = function ()
+    local Terminal = require("toggleterm.terminal").Terminal
+    local t = Terminal:new({ direction = "horizontal", size = 12 })
+    return t:toggle()
+  end,
 
 	lazygit = function()
 		local Terminal = require("toggleterm.terminal").Terminal

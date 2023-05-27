@@ -66,13 +66,13 @@ Keymap("n", "<leader>bx", [[<cmd>w<cr><cmd>luafile %<cr><cmd>echo "Sourced " . @
 -- {{{ f - Find & tmux
 
 if Is_Enabled("telescope.nvim") then
-  Keymap("n", "<leader><leader>", "<cmd>Telescope git_files<cr>", { desc = "Git Files"})
+  Keymap("n", "<leader><leader>", "<cmd>Telescope git_files<cr>", { desc = "Git Files" })
   Keymap("n", "<leader>fC", "<cmd>Telescope commands<cr>", { desc = "Commands" })
   Keymap("n", "<leader>fF", "<cmd>Telescope media_files<cr>")
   Keymap("n", "<leader>fM", "<cmd>Telescope man_pages<cr>", { desc = "Manual Pages" })
   Keymap("n", "<leader>fR", "<cmd>Telescope registers<cr>", { desc = "Registers" })
   Keymap("n", "<leader>fb", "<cmd>Telescope buffers<cr>", { desc = "Buffers" })
-  Keymap("n", "<leader>fd", "<cmd>Telescope diagnostics<cr>", { desc = "Diagnostics"})
+  Keymap("n", "<leader>fd", "<cmd>Telescope diagnostics<cr>", { desc = "Diagnostics" })
   Keymap("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Find Files" })
   Keymap("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", { desc = "Grep `live`" })
   Keymap("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", { desc = "Help tags" })
@@ -83,11 +83,12 @@ if Is_Enabled("telescope.nvim") then
   Keymap("n", "<leader>P", ":Telescope projects<CR>", { desc = "Projects" }) -- Not installed
   Keymap("n", "<leader>fw", "<cmd>Telescope grep_string<cr>", { desc = "Find words" })
   Keymap("n", "<leader>fn", "<cmd>Telescope notify<cr>", { desc = "Notifications" })
+  Keymap("n", "<leader>fy", "<cmd>TodoTelescope<cr>", { desc = "TODO" })
 end
 
-if Is_Enabled("todo-comments.nvim") then
-  Keymap("n", "<leader>fy", "<cmd>TodoTelescope keywords=Youtube,URL<cr>")
-end
+-- if Is_Enabled("todo-comments.nvim") then
+--   Keymap("n", "<leader>fy", "<cmd>TodoTelescope keywords=Youtube,URL<cr>")
+-- end
 
 if Is_Enabled("vim-tmux-runner") then
   Keymap("n", "<leader>fc", "<cmd>VtrFlushCommand<cr>")
@@ -205,11 +206,22 @@ Keymap("n", "s", ":HopChar1<cr>", { desc = "Hop to word" })
 Keymap("n", "S", ":HopPattern<cr>", { desc = "Hop to Pattern" })
 
 -- ------------------------------------------------------------------------- }}}
+-- {{{ T - ToggleTerm
 
 if Is_Enabled("toggleterm.nvim") then
-	Keymap("n", "<leader>Tf", [[<cmd>lua Customize.toggleterm.float()<cr>]], { desc = "Float"})
-	Keymap("n", "<leader>Th", "<cmd>ToggleTerm size=12 direction=horizontal<cr>", { desc = "Horizontal"})
-	Keymap("n", "<leader>Tr", [[<cmd>lua Customize.toggleterm.ranger()<cr>]], { desc = "Ranger" })
+  Keymap("n", "<leader>Tf", [[<cmd>lua Customize.toggleterm.float()<cr>]], { desc = "Float" })
+  -- Keymap("n", "<leader>Th", "<cmd>ToggleTerm size=12 direction=horizontal<cr>", { desc = "Horizontal"})
+  Keymap("n", "<leader>Th", "<cmd>lua Customize.toggleterm.horizontal()<cr>", { desc = "Horizontal" })
+  Keymap("n", "<leader>Tv", "<cmd>ToggleTerm size=80 direction=vertical<cr>", { desc = "Vertical" })
+  Keymap("n", "<leader>Tr", "<cmd>lua Customize.toggleterm.ranger()<cr>", { desc = "Ranger" })
+  -- ToggleTerm mappings
+  Keymap("t", "<esc>", [[<C-\><C-n>]])
+  Keymap("t", "kj", [[<C-\><C-n>]])
+  Keymap("t", "<C-h>", [[<Cmd>wincmd h<CR>]])
+  Keymap("t", "<C-j>", [[<Cmd>wincmd j<CR>]])
+  Keymap("t", "<C-k>", [[<Cmd>wincmd k<CR>]])
+  Keymap("t", "<C-l>", [[<Cmd>wincmd l<CR>]])
+  Keymap("t", "<C-w>", [[<C-\><C-n><C-w>]])
 end
 
 -- ------------------------------------------------------------------------- }}}
@@ -239,15 +251,3 @@ Keymap("n", "n", "nzz", { noremap = true })
 -- Keymap("n", "<leader>Tv", "<cmd> ToggleTerm size=80 direction=vertical<CR>", { desc = "Vertical" })
 -- Keymap("n", "<leader>Th", "<cmd> ToggleTerm size=12 direction=horizontal<CR>", { desc = "Horizontal" })
 --
-function _G.set_terminal_keymaps()
-  local opts = { buffer = 0 }
-  Keymap("t", "<esc>", [[<C-\><C-n>]], opts)
-  Keymap("t", "kj", [[<C-\><C-n>]], opts)
-  Keymap("t", "jk", [[<C-\><C-n>]], opts)
-  Keymap("t", "<C-h>", [[<Cmd>wincmd h<CR>]], opts)
-  Keymap("t", "<C-j>", [[<Cmd>wincmd j<CR>]], opts)
-  Keymap("t", "<C-k>", [[<Cmd>wincmd k<CR>]], opts)
-  Keymap("t", "<C-l>", [[<Cmd>wincmd l<CR>]], opts)
-  Keymap("t", "<C-w>", [[<C-\><C-n><C-w>]], opts)
-end
-

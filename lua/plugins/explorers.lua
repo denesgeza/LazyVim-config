@@ -17,6 +17,12 @@ return {
   {
     "nvim-neo-tree/neo-tree.nvim",
     enabled = Is_Enabled("neo-tree.nvim"),
+    branch = "v2.x",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+      "MunifTanjim/nui.nvim",
+    },
     keys = false,
     opts = function(_, opts)
       -- Use LazyVim default setup.
@@ -47,7 +53,7 @@ return {
         custom = { ".git" },
       },
       view = {
-        side = "right",
+        side = "left",
         width = 30,
       },
     },

@@ -4,7 +4,84 @@ Is_Enabled = require("config.functions").is_enabled
 Use_Defaults = require("config.functions").use_plugin_defaults
 
 return {
+  -- {{{ kanagawa
+  {
+    "rebelot/kanagawa.nvim",
+    enabled = Is_Enabled("kanagawa"),
+    lazy = false,
+    name = "kanagawa",
+    priority = 1000,
+    config = function()
+      require("kanagawa").setup({
+        compile = false, -- enable compiling the colorscheme
+        undercurl = true, -- enable undercurls
+        commentStyle = { italic = true },
+        functionStyle = {},
+        keywordStyle = { italic = true },
+        statementStyle = { bold = true },
+        typeStyle = {},
+        transparent = false, -- do not set background color
+        dimInactive = false, -- dim inactive window `:h hl-NormalNC`
+        terminalColors = true, -- define vim.g.terminal_color_{0,17}
+        colors = { -- add/modify theme and palette colors
+          palette = {},
+          theme = {
+            wave = {},
+            lotus = {},
+            dragon = {},
+            all = {
+              ui = {
+                bg_gutter = "none",
+              },
+            },
+          },
+        },
+        overrides = function(colors) -- add/modify highlights
+          -- Get the colors for the current theme
+          local colors = require("kanagawa.colors").setup()
+          local palette_colors = colors.palette
+          local theme_colors = colors.theme
 
+          -- Get the colors for a specific theme
+          local wave_colors = require("kanagawa.colors").setup({ theme = "wave" })
+
+          local theme = colors.theme
+          return {
+            -- TelescopeTitle = { fg = theme.ui.special, bold = true },
+            -- TelescopePromptNormal = { bg = theme.ui.bg_p1 },
+            -- TelescopePromptBorder = { fg = theme.ui.bg_p1, bg = theme.ui.bg_p1 },
+            -- TelescopeResultsNormal = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m1 },
+            -- TelescopeResultsBorder = { fg = theme.ui.bg_m1, bg = theme.ui.bg_m1 },
+            -- TelescopePreviewNormal = { bg = theme.ui.bg_dim },
+            -- TelescopePreviewBorder = { bg = theme.ui.bg_dim, fg = theme.ui.bg_dim },
+            NormalFloat = { bg = "none" },
+            FloatBorder = { bg = "none" },
+            FloatTitle = { bg = "none" },
+
+            -- Save an hlgroup with dark background and dimmed foreground
+            -- so that you can use it where your still want darker windows.
+            -- E.g.: autocmd TermOpen * setlocal winhighlight=Normal:NormalDark
+            NormalDark = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m3 },
+
+            -- Popular plugins that open floats will link to NormalFloat by default;
+            -- set their background accordingly if you wish to keep them dark and borderless
+            LazyNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
+            MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
+            Pmenu = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m3 },
+            PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
+            PmenuSbar = { bg = theme.ui.bg_m1 },
+            PmenuThumb = { bg = theme.ui.bg_p2 },
+          }
+        end,
+        theme = "wave", -- Load "wave" theme when 'background' option is not set
+        background = { -- map the value of 'background' option to a theme
+          dark = "wave", -- try "dragon" !
+          light = "lotus",
+        },
+      })
+    end,
+  },
+  -- ----------------------------------------------------------------------- }}}
   -- {{{ gruvbox
   {
     "ellisonleao/gruvbox.nvim",
@@ -127,42 +204,6 @@ return {
     config = function()
       vim.cmd([[TransparentEnable]])
     end,
-  },
-
-  -- ----------------------------------------------------------------------- }}}
-  -- {{{ nvim-treesitter
-  {
-    "nvim-treesitter/nvim-treesitter",
-    enabled = Is_Enabled("nvim-treesitter"),
-    opts = function(_, opts)
-      if Use_Defaults("nvim-treesitter") then
-        -- Use LazyVim default setup.
-        opts = opts
-      else
-        -- Use my customizations.
-        opts.autopairs = { enable = true }
-        opts.autotag = { enable = true, disable = { "xml" } }
-        opts.context_commenting = { enable = true, enable_autocmd = false }
-        opts.highlight = {
-          enable = true,
-          disable = Constants.disabled.treesitter,
-          additional_vim_regex_highlighting = true,
-        }
-        opts.indent = { enable = true, disable = { "yml", "yaml" } }
-        opts.rainbow = {
-          enable = true,
-          extended_mode = true,
-          max_file_lines = 1500,
-          colors = Constants.colors.rainbow,
-        }
-        opts.disable = { "latex" }
-        opts.ensure_installed = Constants.ensure_installed.treesitter
-      end
-    end,
-
-    dependencies = {
-      "mrjones2014/nvim-ts-rainbow",
-    },
   },
 
   -- ----------------------------------------------------------------------- }}}

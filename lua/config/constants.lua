@@ -42,7 +42,7 @@ Constants = {
       "omnisharp",
       "pyright",
       -- "rust_analyzer",
-      -- "solargraph",
+      "solargraph",
       "sqlls",
       "texlab",
       "tsserver",
@@ -182,6 +182,8 @@ Constants = {
     },
     keywords = {
       Youtube = { icon = " ", color = "#ff0000" },
+      TODO = { icon = " ", color = "#ff0000" },
+      FIXME = { icon = " ", color = "#ff0000" },
       URL = { icon = " ", color = "#7711FF", alt = { "Url", "url" } },
     },
     web_devicons = {

@@ -24,7 +24,9 @@ return {
         end,
       },
     },
-    config = function()
+
+    opts = {},
+    config = function(_, opts)
       -- Fold options
       vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
       vim.o.foldcolumn = "1" -- '0' is not bad
@@ -32,7 +34,7 @@ return {
       vim.o.foldlevelstart = 99
       vim.o.foldenable = true
 
-      require("ufo").setup()
+      require("ufo").setup(opts)
     end,
   },
 }
